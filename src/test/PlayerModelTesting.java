@@ -2,6 +2,8 @@ package test;
 
 import model.Location;
 import model.Player;
+import model.Stick;
+import model.Weapon;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -17,7 +19,7 @@ public class PlayerModelTesting {
      * Creates new instance of player.
      */
     public void resetPlayer() {
-        this.p = new Player("Sam", new Location(0,0));
+        this.p = new Player("Sam", new Location(0,0), new Stick());
     }
 
     @Test
@@ -34,6 +36,18 @@ public class PlayerModelTesting {
         assertEquals(1, p.getLevel());
         // health at right amount
         assert p.getHealth() == 100;
+        // should have weapon
+        assert p.getWeapon() instanceof Weapon;
+    }
+
+    @Test
+    public void weaponUsage() {
+        // testing initiation
+        this.resetPlayer();
+        // upgrade weapon
+        p.getWeapon().upgrade(20);
+        // check if weapon now deals 20 damage
+        assert p.getWeapon().getDamage() == 20;
     }
 
     @Test

@@ -9,16 +9,34 @@ public class Player {
     private int level;
     private double health;
     private Location location;
+    private Weapon weapon;
 
     /**
      * The player of the game upon creation.
      * @param name name of the player
      */
-    public Player(String name, Location loc) {
+    public Player(String name, Location loc, Weapon w) {
         this.name = name;
         this.level = 1;
         this.health = 100;
         this.location = loc;
+        this.weapon = w;
+    }
+
+    /**
+     * Give to the player a new weapon.
+     * @param w replacement of old weapon
+     */
+    public void setWeapon(Weapon w) {
+        this.weapon = w;
+    }
+
+    /**
+     * Get the player's current weapon.
+     * @return
+     */
+    public Weapon getWeapon() {
+        return this.weapon;
     }
 
     /**
