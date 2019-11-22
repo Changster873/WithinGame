@@ -1,9 +1,6 @@
 package test;
 
-import model.Location;
-import model.Player;
-import model.Stick;
-import model.Weapon;
+import model.*;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -89,5 +86,32 @@ public class PlayerModelTesting {
         // check both x and y
         assert p.getLocation().x == 1;
         assert p.getLocation().y == 2;
+    }
+
+    @Test
+    public void battle() {
+        // testing initiation
+        this.resetPlayer();
+        // make another player so battle is possible
+        Player p2 = new Player("Daniel", new Location(0,0), new Stick());
+        // commence a battle
+        Battle b = new Battle(p, p2);
+        // Sam attacks Daniel
+        b.dealDamage(p2, p.getWeapon());
+        // check to see if Daniel felt that
+        assert p2.getHealth() != 100 && p2.getHealth() == 90;
+        // upgrade weapon and attack again
+        p.getWeapon().upgrade(50);
+        b.dealDamage(p2, p.getWeapon());
+        // Daniel should be hurt even more now
+        assert p2.getHealth() == 40;
+        // hit once again
+        b.dealDamage(p2, p.getWeapon());
+        // Daniel is dead now but has health of 0 and not negative
+        assert p2.getHealth() == 0;
+        // set Sam to be the victor
+        b.setVictor(p);
+        // Is Sam the winner of this battle?
+        assertEquals("Sam", b.getVictor().getName());
     }
 }
