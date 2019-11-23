@@ -22,4 +22,11 @@ Players can be created and can battle with others using a given weapon.
 
 ``23rd November 2019``
 
+GUI created, map rendered with sprites and sprite can move around using keys.
+
+**NEXT UP:** Move around in the right directions using appropriate keys.
+Make it so they cannot move to locations like wall, water, etc...
+
+``24th November 2019``
+
 TBA
